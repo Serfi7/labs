@@ -1,0 +1,37 @@
+Histogram by ages: 
+Key: 1, Value: 4
+Key: 2, Value: 2
+Key: 3, Value: 3
+Key: 4, Value: 4
+Key: 5, Value: 1
+Key: 6, Value: 2
+Key: 7, Value: 2
+Key: 8, Value: 5
+Key: 9, Value: 7
+Key: 10, Value: 4
+Key: 11, Value: 5
+Key: 12, Value: 2
+Key: 13, Value: 1
+Key: 14, Value: 3
+Key: 15, Value: 1
+
+Histogram by names: 
+Key: Bart, Value: 2
+Key: Ash, Value: 2
+Key: Bob, Value: 1
+Key: Birch, Value: 4
+Key: Bimbo, Value: 3
+Key: Basil, Value: 3
+Key: Benas, Value: 4
+Key: Blaze, Value: 1
+Key: Blackwell, Value: 2
+Key: Blackie, Value: 3
+Key: Bligh, Value: 3
+Key: Brass, Value: 3
+Key: Puma, Value: 3
+Key: Brent, Value: 1
+Key: Bryn, Value: 2
+Key: Tabby, Value: 3
+Key: Zebra, Value: 3
+Key: Widow, Value: 3
+

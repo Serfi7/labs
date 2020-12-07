@@ -1,0 +1,2 @@
+g++ -std=c++14 src/main.cpp -o dist/main.out
+./dist/main.out
