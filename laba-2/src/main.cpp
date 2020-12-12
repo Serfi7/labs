@@ -179,10 +179,10 @@ void writeNamesHistogram(Histogram<Cat, string>* histogram) {
     output.close();
 
     cout << "Histogram by names was successfully write to 'output.txt'" << endl;
-    // cout << "Histogram by ages was successfully write to 'output.txt'" << endl;
-    // cout << "Histogram by names:" << endl;
-    // cout << histogram->joinDevision("\n");
-    // cout << endl;
+    cout << "Histogram by ages was successfully write to 'output.txt'" << endl;
+    cout << "Histogram by names:" << endl;
+    cout << histogram->joinDevision("\n");
+    cout << endl;
 }
 
 void fromFile() {
@@ -208,11 +208,67 @@ void fromFile() {
     delete agesRange;
     delete namesRange;
     delete cats;
-    delete histogramByAges;
+    //delete histogramByAges;
     delete histogramByNames;
 }
 
+class BSTNode{
+public:
+    int value;
+    BSTNode* left;
+    BSTNode* right;
+
+    BSTNode(int value) : value(value) {}
+};
+
+class BST {
+public:
+    BSTNode* root;
+
+    BST() {}
+};
+
+bool isBST(BSTNode* node, int min, int max) {
+    if (!node) {
+        return true;
+    }
+
+    if (node->value < min || node->value > max) {
+        return false;
+    }
+
+    return isBST(node->left, min, node->value) &&
+        isBST(node->right, node->value, max);
+}
+
+bool isBST(BSTNode* root) {
+    return isBST(root, INT_MIN, INT_MAX);
+}
+
 int main() {
+    // auto node1 = new BSTNode(5);
+    // auto node2 = new BSTNode(9);
+    //auto node3 = new BSTNode(3);
+    // auto node4 = new BSTNode(4);
+    // auto node5 = new BSTNode(2);
+    //auto node6 = new BSTNode(7);
+
+    // node1->left = node4;
+    // node1->right = node2;
+
+    //node2->left = node3;
+
+    //node4->left = node5;
+
+    //node5->right = node6;
+
+    // auto bintree = new BST();
+    // bintree->root = node1;
+
+    //cout << (isBST(bintree->root) ? "BST" : "not BST") << endl;
+    //notBST->Add(5);
+    //notBST->Add(5);
+
     while (1) {
         cout << "Enter command:" << endl;
         cout << "1) From file" << endl;
