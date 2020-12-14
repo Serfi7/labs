@@ -22,7 +22,7 @@ public:
         return *value;
     }
 
-    bool operator=(Pair& other) const;
+    Pair<TKey, TValue>& operator=(const Pair<TKey, TValue>& other) const;
 
     bool operator==(Pair& other) const;
     bool operator!=(Pair& other) const;
@@ -68,8 +68,8 @@ Pair<TKey, TValue>::~Pair() {
 }
 
 template<class TKey, class TValue>
-bool Pair<TKey, TValue>::operator=(Pair& other) const  {
-    return new Pair<TKey, TValue>(other);
+Pair<TKey, TValue>& Pair<TKey, TValue>::operator=(const Pair<TKey, TValue>& other) const {
+    return *(new Pair<TKey, TValue>(other));
 }
 
 template<class TKey, class TValue>

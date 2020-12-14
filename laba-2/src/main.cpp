@@ -57,21 +57,6 @@ vector<int> readNumsFromFile() {
     return data;
 }
 
-ArraySequence<int>* readAges(ifstream &file) {
-    auto ages = new ArraySequence<int>();
-
-    string agesLine;
-    getline(file, agesLine);
-
-    istringstream iss(agesLine);
-    int age;
-    while (iss >> age) {
-        ages->Append(age);
-    }
-
-    return ages;
-}
-
 ArraySequence<string>* readNames(ifstream &file) {
     auto names = new ArraySequence<string>();
 
@@ -105,28 +90,13 @@ ArraySequence<Cat>* readCats(ifstream &file) {
     return cats;
 }
 
-Histogram<Cat, int>* agesHistogram(Sequence<Cat>* cats, Sequence<int>* ages) {
-    auto splitter = [](const Cat& cat) -> int {
-        return cat.age;
-    };
-
-    auto histogramBuilder = HistogramBuilder<Cat, int>();
-    auto histogram = histogramBuilder.FromSequence(
-        cats,
-        ages,
-        splitter
-    );
-
-    return histogram;
-}
-
 Histogram<Cat, string>* namesHistogram(Sequence<Cat>* cats, Sequence<string>* names) {
     auto splitter = [](const Cat& cat) -> string {
         return cat.name;
     };
 
     auto histogramBuilder = HistogramBuilder<Cat, string>();
-    auto histogram = histogramBuilder.FromSequence(
+    auto histogram = histogramBuilder.HashDictionaryFromSequence(
         cats,
         names,
         splitter
@@ -147,22 +117,6 @@ void writeResultToFile(Sequence<int>* seq, double microseconds, string sortSort)
     output << "Sorting time: " << microseconds / 1000 << " ms" << endl;
     output << endl;
     output.close();
-}
-
-void writeAgesHistogram(Histogram<Cat, int>* histogram) {
-    ofstream output("output.txt", ios::ios_base::app);
-
-    if (!output.is_open()) {
-        cout << "Could not open file. Try again." << endl;
-    }
-
-    output << "Histogram by ages: " << endl;
-    output << histogram->joinDevision("\n");
-    output << endl;
-
-    output.close();
-
-    cout << "Histogram by ages was successfully write to 'output.txt'" << endl;
 }
 
 void writeNamesHistogram(Histogram<Cat, string>* histogram) {
@@ -193,22 +147,17 @@ void fromFile() {
         return;
     }
 
-    auto agesRange = readAges(file);
     auto namesRange = readNames(file);
     auto cats = readCats(file);
 
     file.close();
 
-    auto histogramByAges = agesHistogram(cats, agesRange);
     auto histogramByNames = namesHistogram(cats, namesRange);
 
-    writeAgesHistogram(histogramByAges);
     writeNamesHistogram(histogramByNames);
 
-    delete agesRange;
     delete namesRange;
     delete cats;
-    //delete histogramByAges;
     delete histogramByNames;
 }
 

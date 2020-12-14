@@ -4,26 +4,26 @@
 
 #include "../Sequence.hpp"
 #include "../dictionary/Dictionary.hpp"
+#include "../dictionary/DictionaryHash.hpp"
 
 template<class TElement, class TSplitter>
 class Histogram {
 private:
     Sequence<TElement>* elements;
-    Dictionary<TSplitter, int>* histogram;
+    IDictionary<TSplitter, int>* histogram;
 
 public:
-    Histogram(Sequence<TElement> &elements, Dictionary<TSplitter, int> &dict) {
-        this->elements = new ArraySequence<TElement>(elements);
+    Histogram(Dictionary<TSplitter, int> &dict) {
         this->histogram = new Dictionary<TSplitter, int>(dict);
+    }
+
+    Histogram(DictionaryHash<TSplitter, int> &dict) {
+        this->histogram = new DictionaryHash<TSplitter, int>(dict);
     }
 
 public:
     Dictionary<TSplitter, int> getDevision() {
         return this->histogram;
-    }
-
-    Sequence<TElement> getElements() {
-        return this->elements;
     }
 
     std::string joinDevision(std::string separator = ", ") {

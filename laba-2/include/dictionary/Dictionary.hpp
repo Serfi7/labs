@@ -23,8 +23,8 @@ public:
     virtual TValue Get(const TKey& key) const override;
     virtual void Set(const TKey& key, const TValue& value) const override;
     virtual bool ContainsKey(const TKey& key) const override;
-    virtual void Add(const TKey& key, const TValue& value) const override;
-    virtual void Remove(const TKey& key) const override;
+    virtual void Add(const TKey& key, const TValue& value) override;
+    virtual void Remove(const TKey& key) override;
     virtual std::string Join(const std::string separator = ", ") const override;
 };
 
@@ -73,7 +73,7 @@ bool Dictionary<TKey, TValue>::ContainsKey(const TKey& key) const {
 }
 
 template<class TKey, class TValue>
-void Dictionary<TKey, TValue>::Add(const TKey& key, const TValue& value) const{
+void Dictionary<TKey, TValue>::Add(const TKey& key, const TValue& value) {
     auto newPair = Pair<TKey, TValue>(key, value);
 
     if (ContainsKey(key)) {
@@ -84,7 +84,7 @@ void Dictionary<TKey, TValue>::Add(const TKey& key, const TValue& value) const{
 }
 
 template<class TKey, class TValue>
-void Dictionary<TKey, TValue>::Remove(const TKey& key) const {
+void Dictionary<TKey, TValue>::Remove(const TKey& key) {
     auto emptyValue = TValue();
     auto newPair = Pair<TKey, TValue>(key, emptyValue);
 
